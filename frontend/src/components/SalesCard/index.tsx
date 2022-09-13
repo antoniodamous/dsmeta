@@ -1,26 +1,26 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import { Sale } from '../../models/sale';
-import { BASE_URL } from '../../utils/request';
-import NotificationButton from '../NotificationButton';
-import './styles.css';
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import { Sale } from '../../models/Sale'
+import { BASE_URL } from '../../utils/request'
+import NotificationButton from '../NotificationButton'
+import './styles.css'
 
 function SalesCard() {
-    const min = new Date(new Date().setDate(new Date().getDate() - 365));
-    const max = new Date();
+  const min = new Date(new Date().setDate(new Date().getDate() - 365))
+  const max = new Date()
 
-    const [minDate, setMinDate] = useState(min);
-    const [maxDate, setMaxDate] = useState(max);
-    
-    const [sales, setSales] = useState<Sale[]>([]);
+  const [minDate, setMinDate] = useState(min)
+  const [maxDate, setMaxDate] = useState(max)
 
-    useEffect(() => {
-        axios.get(`{BASE_URL}/sales`).then(response => {
-          setSales(response.data.content)
-        })
-    }, []);
+  const [sales, setSales] = useState<Sale[]>([])
+
+  useEffect(() => {
+    axios.get(`${BASE_URL}/sales`).then(response => {
+      setSales(response.data.content)
+    })
+  }, [])
 
   return (
     <div className="dsmeta-card">
